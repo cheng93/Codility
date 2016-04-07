@@ -53,7 +53,7 @@ namespace Argon2015
 
         public static Solution Create()
         {
-            return new Solution(new ForecastsChange(), new SwimmingForecastCounter(), new TrekkingForecastCounter());
+            return new Solution(new ImprovedForecastsChange(), new SwimmingForecastCounter(), new TrekkingForecastCounter());
         }
     }
 }

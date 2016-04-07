@@ -7,7 +7,7 @@ namespace Argon2015.UnitTest
     [TestClass]
     public class ForecastsChangeTest
     {
-        private readonly ForecastsChange _forecastsChange = new ForecastsChange();
+        private readonly IForecastsChange _forecastsChange = new ImprovedForecastsChange();
 
         [TestMethod]
         public void Empty()
@@ -17,7 +17,7 @@ namespace Argon2015.UnitTest
             var actual = _forecastsChange.Get(forecasts);
             var expected = new List<int> { };
 
-            CollectionAssert.AreEqual(expected, actual.ToList());
+            CollectionAssert.AreEquivalent(expected, actual.ToList());
         }
 
         [TestMethod]
@@ -28,7 +28,7 @@ namespace Argon2015.UnitTest
             var actual = _forecastsChange.Get(forecasts);
             var expected = new List<int> { };
 
-            CollectionAssert.AreEqual(expected, actual.ToList());
+            CollectionAssert.AreEquivalent(expected, actual.ToList());
         }
 
         [TestMethod]
@@ -39,7 +39,7 @@ namespace Argon2015.UnitTest
             var actual = _forecastsChange.Get(forecasts);
             var expected = new List<int> { 0 };
 
-            CollectionAssert.AreEqual(expected, actual.ToList());
+            CollectionAssert.AreEquivalent(expected, actual.ToList());
         }
 
         [TestMethod]
@@ -50,7 +50,7 @@ namespace Argon2015.UnitTest
             var actual = _forecastsChange.Get(forecasts);
             var expected = new List<int> { };
 
-            CollectionAssert.AreEqual(expected, actual.ToList());
+            CollectionAssert.AreEquivalent(expected, actual.ToList());
         }
 
         [TestMethod]
@@ -61,7 +61,7 @@ namespace Argon2015.UnitTest
             var actual = _forecastsChange.Get(forecasts);
             var expected = new List<int> { 2 };
 
-            CollectionAssert.AreEqual(expected, actual.ToList());
+            CollectionAssert.AreEquivalent(expected, actual.ToList());
         }
 
         [TestMethod]
@@ -72,7 +72,7 @@ namespace Argon2015.UnitTest
             var actual = _forecastsChange.Get(forecasts);
             var expected = new List<int> { 0 };
 
-            CollectionAssert.AreEqual(expected, actual.ToList());
+            CollectionAssert.AreEquivalent(expected, actual.ToList());
         }
 
         [TestMethod]
@@ -83,7 +83,7 @@ namespace Argon2015.UnitTest
             var actual = _forecastsChange.Get(forecasts);
             var expected = new List<int> { 0, 2 };
 
-            CollectionAssert.AreEqual(expected, actual.ToList());
+            CollectionAssert.AreEquivalent(expected, actual.ToList());
         }
 
         [TestMethod]
@@ -92,9 +92,9 @@ namespace Argon2015.UnitTest
             var forecasts = new int[] { 0, 1, 1, 0, 1, 0, 0, 1 };
 
             var actual = _forecastsChange.Get(forecasts);
-            var expected = new List<int> { 0, 3, 6 };
+            var expected = new List<int> { 0, 6 };
 
-            CollectionAssert.AreEqual(expected, actual.ToList());
+            CollectionAssert.AreEquivalent(expected, actual.ToList());
         }
     }
 }
