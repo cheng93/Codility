@@ -25,6 +25,7 @@ namespace Argon2015
         /// 3b) If the good forecast count, is less than or equal to bad forecast count,
         /// we know we have made a (good, bad) pair.
         /// 3c) Append 2 to the running total, and decrease the count by one for each count.
+        /// 3d) Vice versa for bad days.
         /// 4) If bad forecast count is 0, we have made the cancelled out the offset, thus we append to our actual count.
         /// 5) Return the count and any addition good days.
         /// </remarks>
