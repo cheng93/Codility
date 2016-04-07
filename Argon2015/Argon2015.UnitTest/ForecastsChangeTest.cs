@@ -53,7 +53,6 @@ namespace Argon2015.UnitTest
             CollectionAssert.AreEqual(expected, actual.ToList());
         }
 
-
         [TestMethod]
         public void ChangeOnPenultimateDay()
         {
@@ -65,7 +64,6 @@ namespace Argon2015.UnitTest
             CollectionAssert.AreEqual(expected, actual.ToList());
         }
 
-
         [TestMethod]
         public void ChangeOnFirstDay()
         {
@@ -73,6 +71,28 @@ namespace Argon2015.UnitTest
 
             var actual = _forecastsChange.Get(forecasts);
             var expected = new List<int> { 0 };
+
+            CollectionAssert.AreEqual(expected, actual.ToList());
+        }
+
+        [TestMethod]
+        public void MultipleChanges()
+        {
+            var forecasts = new int[] { 0, 1, 0, 1 };
+
+            var actual = _forecastsChange.Get(forecasts);
+            var expected = new List<int> { 0, 2 };
+
+            CollectionAssert.AreEqual(expected, actual.ToList());
+        }
+
+        [TestMethod]
+        public void MultipleDelayedChanges()
+        {
+            var forecasts = new int[] { 0, 1, 1, 0, 1, 0, 0, 1 };
+
+            var actual = _forecastsChange.Get(forecasts);
+            var expected = new List<int> { 0, 3, 6 };
 
             CollectionAssert.AreEqual(expected, actual.ToList());
         }
