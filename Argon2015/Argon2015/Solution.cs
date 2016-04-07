@@ -17,6 +17,18 @@ namespace Argon2015
             _trekkingForecastCounter = trekkingForecastCounter;
         }
 
+        /// <summary>
+        /// Method to solve Argon 2015 challenge.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <returns></returns>
+        /// <remarks>
+        /// This method works by:
+        /// 1) Getting the indexes where the next index is different. 
+        /// These are the days when the forecasts have change.
+        /// 2) For each day, we calculate the days we have for swimming and trekking. 
+        /// If the sum of them is greater than our current count, then this becomes the new value.
+        /// </remarks>
         public int Solve(int[] a)
         {
             var daysWithChange = _forecastsChange.Get(a).ToList();
