@@ -20,17 +20,6 @@ namespace Argon2015.UnitTest
         }
 
         [TestMethod]
-        public void Single_BadWeather()
-        {
-            var forecasts = new List<int> { 1 };
-
-            var actual = _forecastCounter.Count(forecasts);
-            var expected = 0;
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
         public void Equal()
         {
             var forecasts = new List<int> { 0, 1 };
