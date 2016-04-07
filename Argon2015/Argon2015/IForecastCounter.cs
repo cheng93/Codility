@@ -1,7 +1,9 @@
-﻿namespace Argon2015
+﻿using System.Collections.Generic;
+
+namespace Argon2015
 {
     public interface IForecastCounter
     {
-        int Count(int start, int[] forecasts);
+        int Count(IEnumerable<int> forecasts);
     }
 }

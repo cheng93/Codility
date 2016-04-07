@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Argon2015
 {
@@ -11,7 +12,7 @@ namespace Argon2015
             _goodForecast = goodForecast;
         }
 
-        public int Count(int start, int[] forecasts)
+        public int Count(IEnumerable<int> forecasts)
         {
             throw new NotImplementedException();
         }
