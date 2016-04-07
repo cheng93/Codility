@@ -5,7 +5,7 @@ namespace Argon2015.UnitTest
     [TestClass]
     public class CodilityTest
     {
-        private readonly Solution _solution = new Solution();
+        private readonly Solution _solution = Solution.Create();
 
         [TestMethod]
         public void Example1()
