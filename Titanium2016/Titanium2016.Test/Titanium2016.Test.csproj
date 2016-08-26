@@ -84,9 +84,16 @@
   <ItemGroup>
     <Compile Include="ExampleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SolutionsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Titanium2016\Titanium2016.csproj">
+      <Project>{09D57C48-92FD-4393-8CF6-7362BCAFFD8F}</Project>
+      <Name>Titanium2016</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
