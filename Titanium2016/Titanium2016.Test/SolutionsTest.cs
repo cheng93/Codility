@@ -11,6 +11,7 @@ namespace Titanium2016.Test
 
         private int _k;
 
+        [Test]
         public void Single()
         {
             _s = ")";
@@ -22,6 +23,7 @@ namespace Titanium2016.Test
             Assert.AreEqual(expected, actual);
         }
 
+        [Test]
         public void DoubleValid()
         {
             _s = "()";
@@ -33,6 +35,7 @@ namespace Titanium2016.Test
             Assert.AreEqual(expected, actual);
         }
 
+        [Test]
         public void DoubleInvalid_OneTurn()
         {
             _s = "((";
@@ -44,6 +47,7 @@ namespace Titanium2016.Test
             Assert.AreEqual(expected, actual);
         }
 
+        [Test]
         public void DoubleInvalid_TwoTurns()
         {
             _s = "((";
@@ -55,6 +59,7 @@ namespace Titanium2016.Test
             Assert.AreEqual(expected, actual);
         }
 
+        [Test]
         public void DoubleInvalid_NoTurns()
         {
             _s = "((";
