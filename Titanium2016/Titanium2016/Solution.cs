@@ -22,189 +22,80 @@ namespace Titanium2016
 
             var limit = Math.Min(k, maxSwaps);
 
-            if (!bracketCollections.OpenBrackets.Any() && !bracketCollections.ClosedBrackets.Any())
-            {
-                return s.Length;
-            }
+            var output = Output.Calculate(s.Length, bracketCollections.OpenBrackets, bracketCollections.ClosedBrackets);
 
-            var output = 0;
-
-            var joined = bracketCollections.ClosedBrackets.ToList();
-            joined.AddRange(bracketCollections.OpenBrackets);
-
-            for (var j = 0; j < joined.Count; j++)
-            {
-                var current = joined[j];
-                if (j == 0)
-                {
-                    output = current;
-                }
-                else
-                {
-                    var prev = joined[j - 1];
-
-                    output = Math.Max(output, current - prev - 1);
-                }
-            }
-
-            if (joined.Any())
-            {
-                output = Math.Max(output, s.Length - joined[joined.Count - 1] - 1);
-            }
+            if (output == s.Length)
+                return output;
 
             for (var i = 0; i < limit; i++)
             {
                 var openCount = bracketCollections.OpenBrackets.Count;
                 var closedCount = bracketCollections.ClosedBrackets.Count;
 
-                if (openCount == closedCount && openCount == 1)
+                bool? removeOpen = null;
+                var indexToRemove = new int[2];
+
+                var possibleOutput = 0;
+
+                if (closedCount > 1)
                 {
-                    if (i == maxSwaps - 2 && i == limit - 1)
+                    for (var x = 0; x < closedCount - 1; x++)
                     {
-                        return output;
+                        var closed = bracketCollections.ClosedBrackets.ToList();
+                        closed.RemoveAt(x + 1);
+                        closed.RemoveAt(x);
+
+                        var calc = Output.Calculate(s.Length, bracketCollections.OpenBrackets, closed);
+
+                        if (calc >= possibleOutput)
+                        {
+                            removeOpen = false;
+                            indexToRemove = new[] { x, x + 1 };
+                            possibleOutput = calc;
+                        }
                     }
-                    if (i == maxSwaps - 2 && i == limit -2)
+                }
+                if (openCount > 1)
+                {
+                    for (var x = 1; x < openCount; x++)
                     {
-                        return s.Length;
+                        var open = bracketCollections.OpenBrackets.ToList();
+                        open.RemoveAt(x);
+                        open.RemoveAt(x - 1);
+
+                        var calc = Output.Calculate(s.Length, open, bracketCollections.ClosedBrackets);
+
+                        if (calc > possibleOutput)
+                        {
+                            removeOpen = true;
+                            indexToRemove = new[] { x - 1, x };
+                            possibleOutput = calc;
+                        }
                     }
                 }
 
-                var bracketsToRemove = new int[2];
-                var open = false;
-                var biggestDif = -1;
-
-                for (var x = 1; x < openCount; x++)
+                if (openCount == 1 && closedCount == 1)
                 {
-                    var current = bracketCollections.OpenBrackets[x];
-                    var prev = bracketCollections.OpenBrackets[x - 1];
-                    int dif;
-                    if (x == openCount - 1)
-                    {
-                        dif = current - prev - 1;
-                        if (openCount > 2)
-                        {
-                            var prevprev = bracketCollections.OpenBrackets[x - 2];
-                            dif = dif + prev - prevprev - 1;
-                        }
-                        if (current != s.Length - 1)
-                        {
-                            dif = dif + s.Length - current - 1;
-                        }
-                    }
-                    else if (x == 1)
-                    {
-                        var next = bracketCollections.OpenBrackets[x + 1];
-                        dif = next - prev - 2;
+                    bracketCollections.ClosedBrackets.Add(bracketCollections.OpenBrackets[0]);
+                    bracketCollections.OpenBrackets.RemoveAt(0);
+                }
 
-                        var lower = closedCount > 0
-                            ? bracketCollections.ClosedBrackets[closedCount - 1]
-                            : 1;
-
-                        dif = dif + prev - lower - 1;
+                if (removeOpen.HasValue)
+                {
+                    if (removeOpen.Value)
+                    {
+                        bracketCollections.OpenBrackets.RemoveAt(indexToRemove[1]);
+                        bracketCollections.OpenBrackets.RemoveAt(indexToRemove[0]);
                     }
                     else
                     {
-                        var next = bracketCollections.OpenBrackets[x + 1];
-                        var prevprev = bracketCollections.OpenBrackets[x - 2];
-                        dif = next - prevprev - 3;
-                    }
-
-                    if (dif > biggestDif)
-                    {
-                        open = true;
-                        bracketsToRemove = new[] { prev, current };
-                        biggestDif = dif;
+                        bracketCollections.ClosedBrackets.RemoveAt(indexToRemove[1]);
+                        bracketCollections.ClosedBrackets.RemoveAt(indexToRemove[0]);
                     }
                 }
 
-                for (var y = closedCount - 2; y >= 0; y--)
-                {
-                    var current = bracketCollections.ClosedBrackets[y];
-                    var next = bracketCollections.ClosedBrackets[y + 1];
-                    int dif;
-                    if (y == 0)
-                    {
-                        dif = next - current - 1;
-                        if (closedCount > 2)
-                        {
-                            var nextnext = bracketCollections.ClosedBrackets[y + 2];
-                            dif = dif + nextnext - next - 1;
-                        }
-                        if (current != 0)
-                        {
-                            dif = dif + current;
-                        }
-                    }
-                    else if (y == closedCount - 2)
-                    {
-                        var prev = bracketCollections.ClosedBrackets[y - 1];
-                        dif = next - prev - 2;
-
-                        var upper = openCount > 0
-                            ? bracketCollections.OpenBrackets[0]
-                            : s.Length;
-
-                        dif = dif + upper - next - 1;
-
-                    }
-                    else
-                    {
-                        var prev = bracketCollections.ClosedBrackets[y - 1];
-                        var nextnext = bracketCollections.ClosedBrackets[y + 2];
-                        dif = nextnext - prev - 3;
-                    }
-
-                    if (dif > biggestDif)
-                    {
-                        open = false;
-                        bracketsToRemove = new[] { current, next };
-                        biggestDif = dif;
-                    }
-
-                }
-
-                if (open)
-                {
-                    bracketCollections.OpenBrackets.Remove(bracketsToRemove[0]);
-                    bracketCollections.OpenBrackets.Remove(bracketsToRemove[1]);
-                }
-                else
-                {
-                    bracketCollections.ClosedBrackets.Remove(bracketsToRemove[0]);
-                    bracketCollections.ClosedBrackets.Remove(bracketsToRemove[1]);
-                }
-
-
-                if (!bracketCollections.OpenBrackets.Any() && !bracketCollections.ClosedBrackets.Any())
-                {
-                    return s.Length;
-                }
-
-                joined = bracketCollections.ClosedBrackets.ToList();
-                joined.AddRange(bracketCollections.OpenBrackets);
-
-
-                for (var j = 0; j < joined.Count; j++)
-                {
-                    var current = joined[j];
-                    if (j == 0)
-                    {
-                        output = current;
-                    }
-                    else
-                    {
-                        var prev = joined[j - 1];
-
-                        output = Math.Max(output, current - prev - 1);
-                    }
-                }
-
-                if (joined.Any())
-                {
-                    output = Math.Max(output, s.Length - joined[joined.Count - 1] - 1);
-                }
+                output = Output.Calculate(s.Length, bracketCollections.OpenBrackets, bracketCollections.ClosedBrackets);
             }
-
 
             return output;
         }
