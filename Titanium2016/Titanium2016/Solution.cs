@@ -35,11 +35,11 @@ namespace Titanium2016
                 bool? removeOpen = null;
                 var indexToRemove = new int[2];
 
-                var possibleOutput = 0;
+                var possibleOutput = output;
 
                 if (closedCount > 1)
                 {
-                    for (var x = 0; x < closedCount - 1; x++)
+                    for (var x = closedCount - 2; x >= 0; x--)
                     {
                         var closed = bracketCollections.ClosedBrackets.ToList();
                         closed.RemoveAt(x + 1);
@@ -47,7 +47,7 @@ namespace Titanium2016
 
                         var calc = Output.Calculate(s.Length, bracketCollections.OpenBrackets, closed);
 
-                        if (calc >= possibleOutput)
+                        if (calc > possibleOutput)
                         {
                             removeOpen = false;
                             indexToRemove = new[] { x, x + 1 };
@@ -74,12 +74,6 @@ namespace Titanium2016
                     }
                 }
 
-                if (openCount == 1 && closedCount == 1)
-                {
-                    bracketCollections.ClosedBrackets.Add(bracketCollections.OpenBrackets[0]);
-                    bracketCollections.OpenBrackets.RemoveAt(0);
-                }
-
                 if (removeOpen.HasValue)
                 {
                     if (removeOpen.Value)
@@ -91,6 +85,15 @@ namespace Titanium2016
                     {
                         bracketCollections.ClosedBrackets.RemoveAt(indexToRemove[1]);
                         bracketCollections.ClosedBrackets.RemoveAt(indexToRemove[0]);
+                    }
+                }
+                else
+                {
+                    if ((closedCount == 1 && openCount >= 1) 
+                        || (openCount == 1 && closedCount >= 1))
+                    {
+                        bracketCollections.ClosedBrackets.Add(bracketCollections.OpenBrackets[0]);
+                        bracketCollections.OpenBrackets.RemoveAt(0);
                     }
                 }
 
