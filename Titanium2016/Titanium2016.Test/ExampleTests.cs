@@ -46,5 +46,17 @@ namespace Titanium2016.Test
 
             Assert.AreEqual(expected, actual);
         }
+
+        [Test]
+        public void Test4()
+        {
+            _s = "()()()((((";
+            _k = 1;
+
+            var actual = _solution.Solve(_s, _k);
+            var expected = 8;
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
