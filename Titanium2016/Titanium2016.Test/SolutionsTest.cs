@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Linq;
+using NUnit.Framework;
 
 namespace Titanium2016.Test
 {
@@ -21,6 +22,12 @@ namespace Titanium2016.Test
             var actual = _solution.Solve(_s, _k);
 
             Assert.AreEqual(expected, actual);
+
+            _s = Helpers.Reflect(_s);
+
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -36,6 +43,18 @@ namespace Titanium2016.Test
         }
 
         [Test]
+        public void DoubleDoubleValid()
+        {
+            _s = "(())";
+            _k = 0;
+
+            var expected = 4;
+            var actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void DoubleInvalid_OneTurn()
         {
             _s = "((";
@@ -43,6 +62,12 @@ namespace Titanium2016.Test
 
             var expected = 2;
             var actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _s = Helpers.Reflect(_s);
+
+            actual = _solution.Solve(_s, _k);
 
             Assert.AreEqual(expected, actual);
         }
@@ -57,6 +82,12 @@ namespace Titanium2016.Test
             var actual = _solution.Solve(_s, _k);
 
             Assert.AreEqual(expected, actual);
+
+            _s = Helpers.Reflect(_s);
+
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -67,6 +98,162 @@ namespace Titanium2016.Test
 
             var expected = 0;
             var actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _s = Helpers.Reflect(_s);
+
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Reflect_NoTurns()
+        {
+            _s = ")(";
+            _k = 0;
+
+            var expected = 0;
+            var actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Reflect_OneTurn()
+        {
+            _s = ")(";
+            _k = 1;
+
+            var expected = 0;
+            var actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Reflect_TwoTurns()
+        {
+            _s = ")(";
+            _k = 2;
+
+            var expected = 2;
+            var actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Test4_Opposite()
+        {
+            _s = "))))()()";
+            _k = 1;
+
+            var expected = 6;
+            var actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void SingleOptimize_OneTurn()
+        {
+            _s = "(((((";
+            _k = 1;
+
+            var expected = 2;
+            var actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _s = Helpers.Reflect(_s);
+
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void SingleOptimize_TwoTurns()
+        {
+            _s = "(((((";
+            _k = 2;
+
+            var expected = 4;
+            var actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _s = Helpers.Reflect(_s);
+
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Premature()
+        {
+            _s = "(()(()()()(()(()()(()()()(()()";
+            _k = 2;
+
+            var expected = 26;
+            var actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _s = Helpers.Reflect(_s);
+
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Chain()
+        {
+            _s = "()()(())()()";
+            _k = 2;
+
+            var expected = 12;
+            var actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _s = Helpers.Reflect(_s);
+
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Random()
+        {
+            _s = "(()))(((()))(((()()))(";
+            _k = 0;
+
+            var expected = 8;
+            var actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+            _k = 1;
+
+            expected = 16;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+            _k = 2;
+
+            expected = 16;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+            _k = 3;
+
+            expected = 22;
+            actual = _solution.Solve(_s, _k);
 
             Assert.AreEqual(expected, actual);
         }
