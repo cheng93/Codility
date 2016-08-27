@@ -471,5 +471,79 @@ namespace Titanium2016.Test
 
             Assert.AreEqual(expected, actual);
         }
+
+        [Test]
+        public void Sneaky()
+        {
+            _s = "(()))(()())()";
+            _k = 0;
+
+            var expected = 8;
+            var actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 1;
+
+            expected = 12;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 2;
+
+            expected = 12;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void OneTypeRotation()
+        {
+            _s = "()()(()()((()()()((((()(()()()()()";
+
+            _k = 0;
+
+            var expected = 10;
+            var actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 1;
+
+            expected = 14;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 2;
+
+            expected = 18;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 3;
+
+            expected = 20;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 4;
+
+            expected = 34;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 5;
+
+            expected = 34;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
