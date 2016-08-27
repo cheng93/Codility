@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="BracketCollections.cs" />
     <Compile Include="MaxSwaps.cs" />
+    <Compile Include="Output.cs" />
     <Compile Include="Solution.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
