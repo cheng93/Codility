@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnotherSolver.cs" />
     <Compile Include="BracketCollections.cs" />
     <Compile Include="MaxSwaps.cs" />
     <Compile Include="Output.cs" />
