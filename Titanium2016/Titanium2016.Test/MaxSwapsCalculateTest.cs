@@ -211,7 +211,7 @@ namespace Titanium2016.Test
         }
 
         [Test]
-        public void OddTotal_MoreOpen_NotAtEnd()
+        public void OddTotal_MoreOpen_NoneAtEnd()
         {
             var open = new int[] { 4, 5, 6 };
             var closed = new int[] { 2, 3 };
