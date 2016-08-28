@@ -13,7 +13,7 @@ namespace Titanium2016
 
         public IList<int> ClosedBrackets { get { return _closedBrackets; } }
 
-        private BracketCollections(IList<int> openBrackets, IList<int> closedBrackets)
+        public BracketCollections(IList<int> openBrackets, IList<int> closedBrackets)
         {
             _openBrackets = openBrackets;
             _closedBrackets = closedBrackets;
