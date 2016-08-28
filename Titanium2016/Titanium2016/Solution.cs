@@ -1,4 +1,6 @@
-﻿namespace Titanium2016
+﻿using System;
+
+namespace Titanium2016
 {
     public class Solution
     {
@@ -12,7 +14,12 @@
             // O(N)
             var bracketCollections = BracketCollections.Create(s);
 
-            return AnotherSolver.Solve(s, k, bracketCollections);
+            var maxSwaps = MaxSwaps.Calculate(s.Length, bracketCollections.OpenBrackets,
+                bracketCollections.ClosedBrackets);
+
+            var swaps = Math.Min(k, maxSwaps);
+
+            return AnotherSolver.Solve(s, maxSwaps, bracketCollections);
         }
     }
 }
