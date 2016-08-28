@@ -526,7 +526,7 @@ namespace Titanium2016.Test
 
             _k = 3;
 
-            expected = 20;
+            expected = 24;
             actual = _solution.Solve(_s, _k);
 
             Assert.AreEqual(expected, actual);
