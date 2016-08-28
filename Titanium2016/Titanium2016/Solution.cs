@@ -12,7 +12,7 @@
             // O(N)
             var bracketCollections = BracketCollections.Create(s);
 
-            return Solver.Solve(s, k, bracketCollections);
+            return AnotherSolver.Solve(s, k, bracketCollections);
         }
     }
 }
