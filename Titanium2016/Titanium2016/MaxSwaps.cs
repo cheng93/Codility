@@ -4,7 +4,7 @@ namespace Titanium2016
 {
     public class MaxSwaps
     {
-        public static int Calculate(IList<int> openBrackets, IList<int> closedBrackets)
+        public static int Calculate(int length, IList<int> openBrackets, IList<int> closedBrackets)
         {
             var open = openBrackets.Count;
             var closed = closedBrackets.Count;
