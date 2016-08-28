@@ -30,9 +30,21 @@ namespace Titanium2016.Test
         }
 
         [Test]
-        public void SingleOpen()
+        public void SingleOpen_Start()
         {
             _openBrackets.Add(0);
+            _length = 7;
+
+            var actual = Output.Calculate(_length, _openBrackets, _closedBrackets);
+            var expected = 6;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void SingleOpen_End()
+        {
+            _openBrackets.Add(6);
             _length = 7;
 
             var actual = Output.Calculate(_length, _openBrackets, _closedBrackets);
@@ -81,9 +93,21 @@ namespace Titanium2016.Test
         }
 
         [Test]
-        public void SingleClosed()
+        public void SingleClosed_Start()
         {
             _closedBrackets.Add(0);
+            _length = 7;
+
+            var actual = Output.Calculate(_length, _openBrackets, _closedBrackets);
+            var expected = 6;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void SingleClosed_End()
+        {
+            _closedBrackets.Add(6);
             _length = 7;
 
             var actual = Output.Calculate(_length, _openBrackets, _closedBrackets);
