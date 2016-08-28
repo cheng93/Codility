@@ -14,8 +14,8 @@ namespace Titanium2016
 
             if (k == 0
                 || (!open.Any() && !closed.Any())
-                || (!open.Any() && closed.Count == 1 && closed[0] == 0)
-                || (!closed.Any() && open.Count == 1 && open[0] == s.Length - 1))
+                || (!open.Any() && closed.Count == 1 && closed[0] == s.Length -1)
+                || (!closed.Any() && open.Count == 1 && open[0] == 0))
             {
                 return output;
             }
@@ -52,7 +52,7 @@ namespace Titanium2016
                 var possibleOutput = Solve(s, k - 1, new BracketCollections(newOpen, newClosed));
                 output = Math.Max(output, possibleOutput);
             }
-            else if (closed.Count == 1 && closed[0] != 0)
+            else if (closed.Count == 1 && closed[0] != s.Length - 1)
             {
                 var newClosed = closed.ToList();
                 var newOpen = open.ToList();
@@ -63,7 +63,7 @@ namespace Titanium2016
                 var possibleOutput = Solve(s, k - 1, new BracketCollections(newOpen, newClosed));
                 output = Math.Max(output, possibleOutput);
             }
-            else if (open.Count == 1 && open[0] != s.Length - 1)
+            else if (open.Count == 1 && open[0] != 0)
             {
                 var newClosed = closed.ToList();
                 var newOpen = open.ToList();
