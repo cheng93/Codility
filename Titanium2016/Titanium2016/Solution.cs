@@ -19,7 +19,7 @@ namespace Titanium2016
 
             var swaps = Math.Min(k, maxSwaps);
 
-            return AnotherSolver.Solve(s, maxSwaps, bracketCollections);
+            return AnotherSolver.Solve(s, swaps, bracketCollections);
         }
     }
 }
