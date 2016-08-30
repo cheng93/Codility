@@ -109,7 +109,7 @@ namespace Titanium2016.Test
         }
 
         [Test]
-        public void Reflect_NoTurns()
+        public void Reflect()
         {
             _s = ")(";
             _k = 0;
@@ -118,30 +118,26 @@ namespace Titanium2016.Test
             var actual = _solution.Solve(_s, _k);
 
             Assert.AreEqual(expected, actual);
-        }
 
-        [Test]
-        public void Reflect_OneTurn()
-        {
-            _s = ")(";
             _k = 1;
 
-            var expected = 0;
-            var actual = _solution.Solve(_s, _k);
+            expected = 0;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 2;
+
+            expected = 2;
+            actual = _solution.Solve(_s, _k);
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
-        public void Reflect_TwoTurns()
+        public void Reflect_Uneven()
         {
-            _s = ")(";
-            _k = 2;
-
-            var expected = 2;
-            var actual = _solution.Solve(_s, _k);
-
-            Assert.AreEqual(expected, actual);
+            
         }
 
         [Test]
