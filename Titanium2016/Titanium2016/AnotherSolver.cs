@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Titanium2016
@@ -85,7 +84,7 @@ namespace Titanium2016
                 var possibleOutput = Solve(s, k - 1, new BracketCollections(newOpen, newClosed));
                 output = Math.Max(output, possibleOutput);
             }
-            
+
             if (closed.Count == 1 && !open.Any())
             {
                 var newClosed = closed.ToList();
@@ -108,7 +107,6 @@ namespace Titanium2016
                 var possibleOutput = Solve(s, k - 1, new BracketCollections(newOpen, newClosed));
                 output = Math.Max(output, possibleOutput);
             }
-
 
             return output;
         }
