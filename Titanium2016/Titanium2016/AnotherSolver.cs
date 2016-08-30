@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Titanium2016
@@ -15,9 +16,9 @@ namespace Titanium2016
             if (k == 0
                 || (!open.Any() && !closed.Any())
                 || (!open.Any() && closed.Count == 1
-                    && (closed[0] == s.Length -1
+                    && (closed[0] == s.Length - 1
                         || closed[0] == 0))
-                || (!closed.Any() && open.Count == 1 
+                || (!closed.Any() && open.Count == 1
                     && (open[0] == 0
                         || (open[0] == s.Length - 1))))
             {
@@ -44,19 +45,48 @@ namespace Titanium2016
                 output = Math.Max(output, possibleOutput);
             }
 
-            if ((closed.Count == 1 && open.Count % 2 == 1)
-                || (open.Count == 1 && closed.Count % 2 == 1))
+            if (closed.Count == 1 && open.Count % 2 == 1)
             {
                 var newClosed = closed.ToList();
                 var newOpen = open.ToList();
 
-                newClosed.Add(newOpen[0]);
-                newOpen.RemoveAt(0);
+                if (closed[0] == 0)
+                {
+                    newClosed.Add(newOpen[0]);
+                    newOpen.RemoveAt(0);
+                }
+                else
+                {
+                    newOpen.Reverse();
+                    newOpen.Add(0);
+                    newOpen.Reverse();
+                    newClosed.RemoveAt(0);
+                }
 
                 var possibleOutput = Solve(s, k - 1, new BracketCollections(newOpen, newClosed));
                 output = Math.Max(output, possibleOutput);
             }
-            else if (closed.Count == 1 && !open.Any())
+            if (open.Count == 1 && closed.Count % 2 == 1)
+            {
+                var newClosed = closed.ToList();
+                var newOpen = open.ToList();
+
+                if (open[0] == s.Length - 1)
+                {
+                    newClosed.Add(newOpen[0]);
+                    newOpen.RemoveAt(0);
+                }
+                else
+                {
+                    newClosed.Add(s.Length - 1);
+                    newOpen.RemoveAt(0);
+                }
+
+                var possibleOutput = Solve(s, k - 1, new BracketCollections(newOpen, newClosed));
+                output = Math.Max(output, possibleOutput);
+            }
+            
+            if (closed.Count == 1 && !open.Any())
             {
                 var newClosed = closed.ToList();
                 var newOpen = open.ToList();
