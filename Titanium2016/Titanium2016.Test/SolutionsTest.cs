@@ -137,7 +137,49 @@ namespace Titanium2016.Test
         [Test]
         public void Reflect_Uneven()
         {
+            _s = "()())()(()()()";
+            _k = 0;
+
+            var expected = 6;
+            var actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 1;
+
+            expected = 8;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 2;
+
+            expected = 14;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
             
+            _s = Helpers.Reflect("()())()(()()()");
+            _k = 0;
+
+            expected = 6;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 1;
+
+            expected = 8;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 2;
+
+            expected = 14;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -242,7 +284,33 @@ namespace Titanium2016.Test
             Assert.AreEqual(expected, actual);
             _k = 2;
 
+            expected = 20;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+            _k = 3;
+
+            expected = 22;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _s = Helpers.Reflect("(()))(((()))(((()()))(");
+            _k = 0;
+
+            expected = 8;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+            _k = 1;
+
             expected = 16;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+            _k = 2;
+
+            expected = 20;
             actual = _solution.Solve(_s, _k);
 
             Assert.AreEqual(expected, actual);
@@ -476,6 +544,28 @@ namespace Titanium2016.Test
 
             var expected = 8;
             var actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 1;
+
+            expected = 12;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 2;
+
+            expected = 12;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _s = Helpers.Reflect("(()))(()())()");
+            _k = 0;
+
+            expected = 8;
+            actual = _solution.Solve(_s, _k);
 
             Assert.AreEqual(expected, actual);
 
