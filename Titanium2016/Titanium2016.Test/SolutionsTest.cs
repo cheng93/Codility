@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace Titanium2016.Test
 {
@@ -158,8 +157,8 @@ namespace Titanium2016.Test
             actual = _solution.Solve(_s, _k);
 
             Assert.AreEqual(expected, actual);
-            
-            _s = Helpers.Reflect("()())()(()()()");
+
+            _s = Helpers.Reflect(_s);
             _k = 0;
 
             expected = 6;
@@ -252,15 +251,17 @@ namespace Titanium2016.Test
         public void Chain()
         {
             _s = "()()(())()()";
-            _k = 2;
+
+            _k = 1;
 
             var expected = 12;
             var actual = _solution.Solve(_s, _k);
 
             Assert.AreEqual(expected, actual);
 
-            _s = Helpers.Reflect(_s);
+            _k = 2;
 
+            expected = 12;
             actual = _solution.Solve(_s, _k);
 
             Assert.AreEqual(expected, actual);
@@ -295,7 +296,7 @@ namespace Titanium2016.Test
 
             Assert.AreEqual(expected, actual);
 
-            _s = Helpers.Reflect("(()))(((()))(((()()))(");
+            _s = Helpers.Reflect(_s);
             _k = 0;
 
             expected = 8;
@@ -323,7 +324,7 @@ namespace Titanium2016.Test
         }
 
         [Test]
-        public void OpenOnly_Even()
+        public void SingleBracketOnly_Even()
         {
             _s = "((((((((";
             _k = 0;
@@ -360,10 +361,46 @@ namespace Titanium2016.Test
             actual = _solution.Solve(_s, _k);
 
             Assert.AreEqual(expected, actual);
+
+            _s = Helpers.Reflect(_s);
+            _k = 0;
+
+            expected = 0;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 1;
+
+            expected = 2;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 2;
+
+            expected = 4;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 3;
+
+            expected = 6;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 4;
+
+            expected = 8;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
-        public void OpenOnly_Odd()
+        public void SingleBracketOnly_Odd()
         {
             _s = "(((((((((";
             _k = 0;
@@ -407,56 +444,12 @@ namespace Titanium2016.Test
             actual = _solution.Solve(_s, _k);
 
             Assert.AreEqual(expected, actual);
-        }
 
-        [Test]
-        public void ClosedOnly_Even()
-        {
-            _s = "))))))))";
+            _s = Helpers.Reflect(_s);
             _k = 0;
 
-            var expected = 0;
-            var actual = _solution.Solve(_s, _k);
-
-            Assert.AreEqual(expected, actual);
-
-            _k = 1;
-
-            expected = 2;
+            expected = 0;
             actual = _solution.Solve(_s, _k);
-
-            Assert.AreEqual(expected, actual);
-
-            _k = 2;
-
-            expected = 4;
-            actual = _solution.Solve(_s, _k);
-
-            Assert.AreEqual(expected, actual);
-
-            _k = 3;
-
-            expected = 6;
-            actual = _solution.Solve(_s, _k);
-
-            Assert.AreEqual(expected, actual);
-
-            _k = 4;
-
-            expected = 8;
-            actual = _solution.Solve(_s, _k);
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void ClosedOnly_Odd()
-        {
-            _s = ")))))))))";
-            _k = 0;
-
-            var expected = 0;
-            var actual = _solution.Solve(_s, _k);
 
             Assert.AreEqual(expected, actual);
 
@@ -534,6 +527,42 @@ namespace Titanium2016.Test
             actual = _solution.Solve(_s, _k);
 
             Assert.AreEqual(expected, actual);
+
+            _s = Helpers.Reflect(_s);
+            _k = 0;
+
+            expected = 8;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 1;
+
+            expected = 10;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 2;
+
+            expected = 10;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 3;
+
+            expected = 12;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 4;
+
+            expected = 14;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -561,7 +590,7 @@ namespace Titanium2016.Test
 
             Assert.AreEqual(expected, actual);
 
-            _s = Helpers.Reflect("(()))(()())()");
+            _s = Helpers.Reflect(_s);
             _k = 0;
 
             expected = 8;
@@ -627,6 +656,561 @@ namespace Titanium2016.Test
             _k = 5;
 
             expected = 34;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _s = Helpers.Reflect(_s);
+
+            _k = 0;
+
+            expected = 10;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 1;
+
+            expected = 14;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 2;
+
+            expected = 18;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 3;
+
+            expected = 24;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 4;
+
+            expected = 34;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 5;
+
+            expected = 34;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void OneTypeRotation_LargeMiddle()
+        {
+            _s = "()()(()()(((()()()()()(()(((()()()";
+            _k = 0;
+
+            var expected = 10;
+            var actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 1;
+
+            expected = 14;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 2;
+
+            expected = 22;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 3;
+
+            expected = 26;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 4;
+
+            expected = 34;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _s = Helpers.Reflect(_s);
+            _k = 0;
+
+            expected = 10;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 1;
+
+            expected = 14;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 2;
+
+            expected = 22;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 3;
+
+            expected = 26;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 4;
+
+            expected = 34;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void LargeEnd()
+        {
+            _s = ")))()(()(())";
+
+            _k = 0;
+
+            var expected = 6;
+            var actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 1;
+
+            expected = 8;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 2;
+
+            expected = 10;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 3;
+
+            expected = 12;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _s = Helpers.Reflect(_s);
+
+            _k = 0;
+
+            expected = 6;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 1;
+
+            expected = 8;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 2;
+
+            expected = 10;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 3;
+
+            expected = 12;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Random2()
+        {
+            _s = ")()()((()())())(()()((()))()()()(()(((";
+            _k = 0;
+
+            var expected = 16;
+            var actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 1;
+
+            expected = 34;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 2;
+
+            expected = 36;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 3;
+
+            expected = 36;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 4;
+
+            expected = 38;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _s = Helpers.Reflect(_s);
+            _k = 0;
+
+            expected = 16;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 1;
+
+            expected = 34;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 2;
+
+            expected = 36;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 3;
+
+            expected = 36;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 4;
+
+            expected = 38;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Random3()
+        {
+            _s = "()()()()))(((()()(())()()()(())((";
+            _k = 0;
+
+            var expected = 18;
+            var actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 1;
+
+            expected = 20;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 2;
+
+            expected = 22;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 3;
+
+            expected = 32;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 4;
+
+            expected = 32;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _s = Helpers.Reflect(_s);
+            _k = 0;
+
+            expected = 18;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 1;
+
+            expected = 20;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 2;
+
+            expected = 22;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 3;
+
+            expected = 32;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 4;
+
+            expected = 32;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Random4()
+        {
+            _s = ")))()(())(()()()()()(()()(()()";
+            _k = 0;
+
+            var expected = 10;
+            var actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 1;
+
+            expected = 22;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 2;
+
+            expected = 26;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 3;
+
+            expected = 28;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _s = Helpers.Reflect(_s);
+            _k = 0;
+
+            expected = 10;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 1;
+
+            expected = 22;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 2;
+
+            expected = 26;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 3;
+
+            expected = 28;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Sandwich()
+        {
+            _s = "())()()";
+            _k = 0;
+
+            var expected = 4;
+            var actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected,actual);
+
+            _k = 1;
+
+            expected = 6;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _s = Helpers.Reflect(_s);
+            _k = 0;
+
+            expected = 4;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 1;
+
+            expected = 6;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Random5()
+        {
+            _s = "()()()()((())))((()()()()(()()";
+            _k = 0;
+
+            var expected = 14;
+            var actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 1;
+
+            expected = 14;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 2;
+
+            expected = 24;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 3;
+
+            expected = 30;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 4;
+
+            expected = 30;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _s = Helpers.Reflect(_s);
+            _k = 0;
+
+            expected = 14;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 1;
+
+            expected = 14;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 2;
+
+            expected = 24;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 3;
+
+            expected = 30;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 4;
+
+            expected = 30;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        public void Hmmm()
+        {
+            _s = ")()()(()";
+            _k = 0;
+
+            var expected = 4;
+            var actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 1;
+
+            expected = 6;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 2;
+
+            expected = 8;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _s = Helpers.Reflect(_s);
+            _k = 0;
+
+            expected = 4;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 1;
+
+            expected = 6;
+            actual = _solution.Solve(_s, _k);
+
+            Assert.AreEqual(expected, actual);
+
+            _k = 2;
+
+            expected = 8;
             actual = _solution.Solve(_s, _k);
 
             Assert.AreEqual(expected, actual);
