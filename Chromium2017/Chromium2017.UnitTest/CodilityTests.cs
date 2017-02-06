@@ -3,7 +3,7 @@
 namespace Chromium2017.UnitTest
 {
     [TestFixture]
-    public class CodilityTests
+    internal class CodilityTests
     {
         private Solution SolutionFactory()
         {
