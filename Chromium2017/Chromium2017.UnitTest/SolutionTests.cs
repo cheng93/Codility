@@ -22,11 +22,11 @@ namespace Chromium2017.UnitTest
 
             Assert.AreEqual(expected, actual);
         }
-
+        
         [Test]
         [TestCase(new[] { 2, 1 }, 3)]
-        [TestCase(new[] { 3, 2, 1 }, 7)]
-        [TestCase(new[] { 3, 1, 2 }, 7)]
+        [TestCase(new[] { 3, 2, 1 }, 6, TestName = "LeftHigher 3.0")]
+        [TestCase(new[] { 3, 1, 2 }, 7, TestName = "LeftHigher 3.1")]
         public void LeftHigher(int[] input, int expected)
         {
             var solution = SolutionFactory();
@@ -38,8 +38,8 @@ namespace Chromium2017.UnitTest
 
         [Test]
         [TestCase(new[] { 1, 2 }, 3)]
-        [TestCase(new[] { 1, 2, 3 }, 7)]
-        [TestCase(new[] { 2, 1, 3 }, 7)]
+        [TestCase(new[] { 1, 2, 3 }, 6, TestName = "RightHigher 3.0")]
+        [TestCase(new[] { 2, 1, 3 }, 7, TestName = "RightHigher 3.1")]
         public void RightHigher(int[] input, int expected)
         {
             var solution = SolutionFactory();
